@@ -18,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
   private static final String lABEL_ID_FORMAT = "pair_%d_label";
   private static final String COUNT_ID_FORMAT = "pair_%d_count";
 
-  private int minPairValue;
-  private int maxPairValue;
+  private int minPairValue = 2;
+  private int maxPairValue= 2 * Roll.NUM_FACES;
   private TextView[] labels;
   private ProgressBar[] counts;
   private Button roller;
@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    minPairValue = 2;
-    maxPairValue = 2 * Roll.NUM_FACES;
     labels = new TextView[maxPairValue - minPairValue + 1];
     counts = new ProgressBar[maxPairValue - minPairValue + 1];
     Resources res = getResources();
