@@ -17,20 +17,18 @@ public class MainActivity extends AppCompatActivity {
 
   private static final String PAIR_lABEL_ID_FORMAT = "pair_%d_label";
   private static final String PAIR_COUNT_ID_FORMAT = "pair_%d_count";
+  private static final String SCRATCH_lABEL_ID_FORMAT = "scratch_%d_label";
+  private static final String SCRATCH_COUNT_ID_FORMAT = "scratch_%d_count";
 
   private int minPairValue = 2;
   private int maxPairValue= 2 * Roll.NUM_FACES;
   private TextView[] pairLabels;
   private ProgressBar[] pairCounts;
+  private TextView[] scratchLabels;
+  private ProgressBar[] scratchCounts;
   private Button roller;
   private TextView rollDisplay;
   private Random rng;
-
-  private static final String SCRATCH_lABEL_ID_FORMAT = "pair_%d_label";
-  private static final String SCRATCH_COUNT_ID_FORMAT = "pair_%d_count";
-
-  private TextView[] scratchLabels;
-  private ProgressBar[] scratchCounts;
 
 
 
@@ -58,19 +56,18 @@ public class MainActivity extends AppCompatActivity {
     roller = findViewById(R.id.roller);
     rollDisplay = findViewById(R.id.roll_display);
     roller.setOnClickListener(new RollerListener());
-
     scratchLabels = new TextView[Roll.NUM_FACES];
     scratchCounts = new ProgressBar[Roll.NUM_FACES];
-
-    for (int i = Roll.NUM_FACES; i <= Roll.NUM_FACES; i++) {
+    for (int i = 1; i <= Roll.NUM_FACES; i++) {
       String labelIdString = String.format(SCRATCH_lABEL_ID_FORMAT, i);
       int labelId = res.getIdentifier(labelIdString, "id", getPackageName());
-      scratchLabels[i - Roll.NUM_FACES] = findViewById(labelId);
-      scratchLabels[i - Roll.NUM_FACES].setText(formatter.format(i));
+      scratchLabels[i - 1] = findViewById(labelId);
+      scratchLabels[i - 1].setText(formatter.format(i));
       String countIdString = String.format(SCRATCH_COUNT_ID_FORMAT, i);
       int countId = res.getIdentifier(countIdString, "id", getPackageName());
-      scratchCounts[i - Roll.NUM_FACES] = findViewById(countId);
-      scratchCounts[i - Roll.NUM_FACES].setProgress(1 + rng.nextInt(7));}
+      scratchCounts[i - 1] = findViewById(countId);
+      scratchCounts[i - 1].setProgress(1 + rng.nextInt(7));
+    }
 
 
   }
